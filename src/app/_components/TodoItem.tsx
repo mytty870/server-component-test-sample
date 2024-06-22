@@ -1,5 +1,6 @@
 import { Todo } from '@/types/types';
 import React from 'react';
+import { Post } from './Post';
 
 type TodoItemProps = {
   todo: Todo;
@@ -12,6 +13,7 @@ export default function TodoItem({ todo }: TodoItemProps) {
       <p className={todo.completed ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}>
         {todo.completed ? 'Completed' : 'Not Completed'}
       </p>
+      {/* <Post /> */}
     </li>
   );
 }
