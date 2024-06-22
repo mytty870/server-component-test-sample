@@ -1,15 +1,28 @@
 import { render, screen } from "@testing-library/react";
-import HomePage from "./page";
-import { describe, it, test, expect } from "vitest";
+import { HomePagePresentation } from "./page";
+import { describe, test, expect } from "vitest";
+import { Todo } from "@/types/types";
+import { todos } from "@/test/fixtures/todos";
  
-describe("ArticleList", () => {
-  test("should render a list of todo", async () => {
-    // このテストは動作しない!
-    // render(<HomePage />);
-    const result = await HomePage()
+const emptyTodos: (Todo & { postNode: React.ReactNode })[] = [];
+describe("HomePagePresentation", () => {
 
-    render(result)
 
-    expect(screen.getAllByRole("listitem")).toHaveLength(9);
+  test("should render a list of todo", () => {
+    render(<HomePagePresentation
+      todos={todos.map((todo) => ({
+        ...todo,
+        postNode: <div>Post</div>,
+      }))}
+        />)
+
+
+    expect(screen.getAllByRole("listitem")).toHaveLength(3);
   });
+
+  test("should render a message when there is no todo", () => {
+    render(<HomePagePresentation todos={emptyTodos} />)
+
+    expect(screen.getByText("Todo が存在しないようです")).toBeInTheDocument();
+  })
 });
