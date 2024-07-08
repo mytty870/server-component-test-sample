@@ -1,3 +1,5 @@
+import { Address } from "cluster"
+
 export interface Todo {
   userId: number
   id: number
@@ -9,4 +11,14 @@ export interface Post {
   id: number
   title: string
   body: string
+}
+
+export interface User {
+  id: number
+  name: string
+  username: string
+  email: string
+  address: Address
+  phone: string
+  website: string
 }
